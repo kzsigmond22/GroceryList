@@ -1,4 +1,4 @@
-package com.zkathi.data
+package com.zkathi.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

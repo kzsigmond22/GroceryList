@@ -1,4 +1,4 @@
-package com.zkathi.grocerylist.ui.main
+package com.zkathi.grocerylist.ui.grocerylist
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zkathi.grocerylist.R
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainFragment : Fragment() {
+@AndroidEntryPoint
+class GroceryListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = GroceryListFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: GroceryListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +25,9 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(GroceryListViewModel::class.java)
     }
 
 }
