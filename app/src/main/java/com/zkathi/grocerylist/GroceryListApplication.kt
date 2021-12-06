@@ -1,4 +1,4 @@
-package com.zkathi.grocerylist.ui
+package com.zkathi.grocerylist
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

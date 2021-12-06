@@ -1,7 +1,8 @@
-package com.zkathi.grocerylist
+package com.zkathi.grocerylist.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.ui.grocerylist.GroceryListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
