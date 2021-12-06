@@ -1,4 +1,4 @@
-package com.zkathi.data.local
+package com.zkathi.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

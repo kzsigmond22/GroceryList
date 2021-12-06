@@ -3,6 +3,7 @@ package com.zkathi.data.di
 import android.content.Context
 import androidx.room.Room
 import com.zkathi.data.data.LocalDataSource
+import com.zkathi.data.domain.mapper.GroceryEntityToGroceryMapper
 import com.zkathi.data.local.AppDatabase
 import com.zkathi.data.local.LocalDataSourceImpl
 import dagger.Binds
@@ -38,4 +39,8 @@ class LocalDataSourceModule {
     @Provides
     @Singleton
     fun provideGroceryDao(appDatabase: AppDatabase) = appDatabase.groceryDao()
+
+    @Provides
+    @Singleton
+    fun provideGroceryEntityToGroceryMapper() = GroceryEntityToGroceryMapper()
 }

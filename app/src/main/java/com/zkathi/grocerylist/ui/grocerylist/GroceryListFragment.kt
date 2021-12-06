@@ -2,6 +2,7 @@ package com.zkathi.grocerylist.ui.grocerylist
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,9 @@ class GroceryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(GroceryListViewModel::class.java)
+        viewModel.groceries.observe(viewLifecycleOwner) {
+        }
+        viewModel.getGroceries()
     }
 
 }
