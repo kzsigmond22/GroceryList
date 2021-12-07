@@ -4,6 +4,7 @@ buildscript {
         kotlin_version = "1.4.32"
         roomVersion = "2.3.0"
         hiltVersion = "2.38.1"
+        coroutineLifeCycleAwareVersion = "2.4.0"
     }
     repositories {
         google()

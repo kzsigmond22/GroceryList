@@ -31,7 +31,6 @@ class GroceryListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GroceryListViewModel::class.java)
         viewModel.groceries.observe(viewLifecycleOwner) {
         }
-        viewModel.getGroceries()
     }
 
 }
