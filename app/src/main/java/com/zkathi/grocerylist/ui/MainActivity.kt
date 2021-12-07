@@ -6,6 +6,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.ui.grocerylist.GroceryListFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,11 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, GroceryListFragment.newInstance())
-                .commitNow()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -32,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_add_grocery -> {
-            // Go to new fragment
+            val controller = Navigation.findNavController(this, R.id.nav_host_fragment)
+            controller.navigate(R.id.action_groceryListFragment_to_newGroceryFragment)
             true
         }
         else -> {

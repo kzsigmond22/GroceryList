@@ -1,38 +1,35 @@
-package com.zkathi.grocerylist.ui.grocerylist
+package com.zkathi.grocerylist.ui.newgrocery
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.ui.GroceryFragment
-import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceryListFragment : GroceryFragment() {
+class NewGroceryFragment : GroceryFragment() {
 
     companion object {
-        fun newInstance() = GroceryListFragment()
+        fun newInstance() = NewGroceryFragment()
     }
 
-    private lateinit var viewModel: GroceryListViewModel
+    private lateinit var viewModel: NewGroceryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        savedInstanceState: Bundle?,
+    ): View? {
+        return inflater.inflate(R.layout.new_grocery_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[GroceryListViewModel::class.java]
-        viewModel.groceries.observe(viewLifecycleOwner) {
-        }
+        viewModel = ViewModelProvider(this)[NewGroceryViewModel::class.java]
     }
-
 }
