@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/new_grocery_image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/new_grocery_img_height"
             android:contentDescription="@string/grocery_image"
             app:layout_constraintBottom_toTopOf="@+id/barrier"
             app:layout_constraintEnd_toStartOf="@+id/new_grocery_image_guid_line"

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class GroceryEntity(
-    @PrimaryKey val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "quantity") val quantity: Int,
