@@ -7,6 +7,9 @@ import javax.inject.Inject
 class GroceryRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource,
 ) : GroceryRepository {
+
     override suspend fun getGroceries() = localDataSource.getAllGroceries()
+
+    override suspend fun saveGrocery(grocery: Grocery) = localDataSource.saveGrocery(grocery)
 
 }

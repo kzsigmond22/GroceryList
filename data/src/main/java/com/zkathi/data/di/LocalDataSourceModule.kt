@@ -33,7 +33,7 @@ class LocalDataSourceModule {
     fun provideDb(@ApplicationContext context: Context) =
         Room.databaseBuilder(
             context,
-            AppDatabase::class.java, "database-name"
+            AppDatabase::class.java, "grocery-db"
         ).build()
 
     @Provides

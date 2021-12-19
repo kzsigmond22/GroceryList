@@ -28,7 +28,8 @@ class NewGroceryFragment : GroceryFragment() {
             if (success) {
                 Glide.with(requireContext())
                     .load(uri)
-                    .into(binding.newGroceryImage);
+                    .into(binding.newGroceryImage)
+                viewModel.setGroceryImage(uri.toString())
             }
         }
 
