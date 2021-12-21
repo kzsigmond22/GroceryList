@@ -32,7 +32,6 @@ class NewGroceryViewModel @Inject constructor(private val groceryRepository: Gro
     fun saveGrocery() {
         grocery.value?.let { groceryToSave ->
             if (groceryToSave.name.isEmpty()) {
-                // TODO : error message
                 return
             }
             viewModelScope.launch {

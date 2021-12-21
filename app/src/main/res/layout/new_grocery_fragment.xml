@@ -94,9 +94,9 @@
             app:layout_constraintTop_toBottomOf="@id/new_grocery_name" />
 
         <Button
+            android:id="@+id/new_grocery_add_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.saveGrocery()}"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

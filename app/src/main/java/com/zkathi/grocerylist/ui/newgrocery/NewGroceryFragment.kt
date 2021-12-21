@@ -22,6 +22,9 @@ import java.util.*
 @AndroidEntryPoint
 class NewGroceryFragment : GroceryFragment() {
 
+    private lateinit var viewModel: NewGroceryViewModel
+    private lateinit var binding: NewGroceryFragmentBinding
+
     private lateinit var uri: Uri
     private val takePicture =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
@@ -32,9 +35,6 @@ class NewGroceryFragment : GroceryFragment() {
                 viewModel.setGroceryImage(uri.toString())
             }
         }
-
-    private lateinit var viewModel: NewGroceryViewModel
-    private lateinit var binding: NewGroceryFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,5 +62,13 @@ class NewGroceryFragment : GroceryFragment() {
 
             takePicture.launch(uri)
         }
+        binding.newGroceryAddButton.setOnClickListener { onSave() }
+    }
+
+    fun onSave() {
+        if (binding.newGroceryName.text.toString().isEmpty()) {
+            showErrorToast(R.string.new_grocery_fill_out_all)
+        }
+        viewModel.saveGrocery()
     }
 }
