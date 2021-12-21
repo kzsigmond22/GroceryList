@@ -13,6 +13,7 @@ import javax.inject.Inject
 class NewGroceryViewModel @Inject constructor(private val groceryRepository: GroceryRepository) :
     ViewModel() {
 
+    private val MINIMUM_QUANTITY = 0
     val grocery = MutableLiveData<Grocery>()
 
     init {
@@ -25,8 +26,12 @@ class NewGroceryViewModel @Inject constructor(private val groceryRepository: Gro
     }
 
     fun decreaseGroceryQuantity() {
-        grocery.value!!.quantity--
-        grocery.postValue(grocery.value)
+        grocery.value?.let {
+            if (it.quantity > MINIMUM_QUANTITY) {
+                it.quantity--
+            }
+            grocery.postValue(it)
+        }
     }
 
     fun saveGrocery() {
