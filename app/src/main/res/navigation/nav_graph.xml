@@ -9,7 +9,7 @@
         android:id="@+id/groceryListFragment"
         android:name="com.zkathi.grocerylist.ui.grocerylist.GroceryListFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/fragment_grocery_list" >
         <action
             android:id="@+id/action_groceryListFragment_to_newGroceryFragment"
             app:destination="@id/newGroceryFragment" />
