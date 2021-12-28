@@ -1,13 +1,15 @@
 package com.zkathi.grocerylist.ui.grocerylist
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.ui.GroceryFragment
+import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +32,16 @@ class GroceryListFragment : GroceryFragment() {
         list.adapter = adapter
         viewModel.groceries.observe(viewLifecycleOwner) { groceries ->
             adapter.updateList(groceries)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setFragmentResultListener(MainActivity.ADD_TASK_REQUEST_KEY) { _, bundle ->
+            val isAdded = bundle.getBoolean(MainActivity.ADD_TASK_IS_ADDED)
+            if (isAdded) {
+                viewModel.refreshList()
+            }
         }
     }
 

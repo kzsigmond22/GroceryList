@@ -12,6 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        val ADD_TASK_REQUEST_KEY = "AddTaskRequestKey"
+        val ADD_TASK_IS_ADDED = "AddTaskIsAdded"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

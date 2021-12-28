@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.zkathi.grocerylist.BuildConfig
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.NewGroceryFragmentBinding
 import com.zkathi.grocerylist.ui.GroceryFragment
+import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.*
@@ -68,7 +72,13 @@ class NewGroceryFragment : GroceryFragment() {
     fun onSave() {
         if (binding.newGroceryName.text.toString().isEmpty()) {
             showErrorToast(R.string.new_grocery_fill_out_all)
+            return
         }
         viewModel.saveGrocery()
+        setFragmentResult(
+            MainActivity.ADD_TASK_REQUEST_KEY,
+            bundleOf(MainActivity.ADD_TASK_IS_ADDED to true)
+        )
+        NavHostFragment.findNavController(requireParentFragment()).popBackStack()
     }
 }
