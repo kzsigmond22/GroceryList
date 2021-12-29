@@ -33,9 +33,6 @@ class NewGroceryFragment : GroceryFragment() {
     private val takePicture =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
             if (success) {
-                Glide.with(requireContext())
-                    .load(uri)
-                    .into(binding.newGroceryImage)
                 viewModel.setGroceryImage(uri.toString())
             }
         }

@@ -47,7 +47,10 @@ class NewGroceryViewModel @Inject constructor(private val groceryRepository: Gro
     }
 
     fun setGroceryImage(imagePath: String) {
-        grocery.value?.let { it.image_name = imagePath }
+        grocery.value?.let {
+            it.image_name = imagePath
+            grocery.postValue(it)
+        }
     }
 
     private fun initGroceryWithDefaultValues() {
