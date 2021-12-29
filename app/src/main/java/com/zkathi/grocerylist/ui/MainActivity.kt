@@ -13,8 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val ADD_TASK_REQUEST_KEY = "AddTaskRequestKey"
-        val ADD_TASK_IS_ADDED = "AddTaskIsAdded"
+        const val ADD_TASK_REQUEST_KEY = "AddTaskRequestKey"
+        const val ADD_TASK_IS_ADDED = "AddTaskIsAdded"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

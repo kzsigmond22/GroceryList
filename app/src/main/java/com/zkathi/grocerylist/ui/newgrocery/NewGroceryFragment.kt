@@ -2,9 +2,7 @@ package com.zkathi.grocerylist.ui.newgrocery
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
@@ -12,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import com.bumptech.glide.Glide
 import com.zkathi.grocerylist.BuildConfig
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.NewGroceryFragmentBinding
@@ -64,6 +61,18 @@ class NewGroceryFragment : GroceryFragment() {
             takePicture.launch(uri)
         }
         binding.newGroceryAddButton.setOnClickListener { onSave() }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val item: MenuItem? = menu.findItem(R.id.action_add_grocery)
+        if (item != null) {
+            item.isVisible = false
+        }
     }
 
     fun onSave() {
