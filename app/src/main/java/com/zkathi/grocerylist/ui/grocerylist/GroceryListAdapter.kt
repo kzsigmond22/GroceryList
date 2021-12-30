@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.databinding.ItemGroceryBinding
 
-class GroceryListAdapter : RecyclerView.Adapter<GroceryViewHolder>() {
+class GroceryListAdapter(private val groceryUpdateHandler: GroceryUpdateHandler) : RecyclerView.Adapter<GroceryViewHolder>() {
 
     private var groceryList = emptyList<Grocery>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
         val binding = ItemGroceryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GroceryViewHolder(binding)
+        return GroceryViewHolder(binding, groceryUpdateHandler)
     }
 
     override fun onBindViewHolder(holder: GroceryViewHolder, position: Int) {

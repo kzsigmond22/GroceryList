@@ -4,7 +4,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.databinding.ItemGroceryBinding
 
-class GroceryViewHolder(private val binding: ItemGroceryBinding) :
+class GroceryViewHolder(
+    private val binding: ItemGroceryBinding,
+    private val groceryUpdateHandler: GroceryUpdateHandler
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     private lateinit var grocery: Grocery
@@ -17,13 +20,18 @@ class GroceryViewHolder(private val binding: ItemGroceryBinding) :
 
     fun increaseQuantity() {
         grocery.quantity++
-        binding.grocery = grocery
+        updateGrocery()
     }
 
     fun decreaseQuantity() {
         if (grocery.quantity > 0) {
             grocery.quantity--
-            binding.grocery = grocery
+            updateGrocery()
         }
+    }
+
+    private fun updateGrocery() {
+        binding.grocery = grocery
+        groceryUpdateHandler.updateGrocery(grocery)
     }
 }

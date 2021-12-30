@@ -16,4 +16,7 @@ class LocalDataSourceImpl @Inject constructor(
         val groceryEntity = groceryMapper.from(grocery)
         groceryDao.insertAll(groceryEntity)
     }
+
+    override suspend fun updateGrocery(grocery: Grocery) =
+        groceryDao.update(groceryMapper.from(grocery))
 }

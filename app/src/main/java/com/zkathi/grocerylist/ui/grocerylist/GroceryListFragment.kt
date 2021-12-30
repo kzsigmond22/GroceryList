@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.ui.GroceryFragment
 import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceryListFragment : GroceryFragment() {
+class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
 
     private lateinit var viewModel: GroceryListViewModel
 
@@ -27,7 +28,7 @@ class GroceryListFragment : GroceryFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GroceryListViewModel::class.java]
-        val adapter = GroceryListAdapter()
+        val adapter = GroceryListAdapter(this)
         val list = view.findViewById<RecyclerView>(R.id.grocery_list_main_list)
         list.adapter = adapter
         viewModel.groceries.observe(viewLifecycleOwner) { groceries ->
@@ -43,6 +44,10 @@ class GroceryListFragment : GroceryFragment() {
                 viewModel.refreshList()
             }
         }
+    }
+
+    override fun updateGrocery(grocery: Grocery) {
+        viewModel.updateGrocery(grocery)
     }
 
 }

@@ -14,4 +14,7 @@ interface GroceryDao {
 
     @Delete
     suspend fun delete(groceryEntity: GroceryEntity)
+
+    @Update
+    suspend fun update(groceryEntity: GroceryEntity)
 }
