@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.zkathi.grocerylist.BuildConfig
 import com.zkathi.grocerylist.R
-import com.zkathi.grocerylist.databinding.NewGroceryFragmentBinding
+import com.zkathi.grocerylist.databinding.FragmentNewGroceryBindingImpl
 import com.zkathi.grocerylist.ui.GroceryFragment
 import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +24,7 @@ import java.util.*
 class NewGroceryFragment : GroceryFragment() {
 
     private lateinit var viewModel: NewGroceryViewModel
-    private lateinit var binding: NewGroceryFragmentBinding
+    private lateinit var binding: FragmentNewGroceryBindingImpl
 
     private lateinit var uri: Uri
     private val takePicture =
@@ -39,7 +39,7 @@ class NewGroceryFragment : GroceryFragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.new_grocery_fragment, container, false
+            inflater, R.layout.fragment_new_grocery, container, false
         )
         return binding.root
     }

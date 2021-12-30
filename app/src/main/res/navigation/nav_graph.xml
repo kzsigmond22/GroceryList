@@ -18,5 +18,5 @@
         android:id="@+id/newGroceryFragment"
         android:name="com.zkathi.grocerylist.ui.newgrocery.NewGroceryFragment"
         android:label="new_grocery_fragment"
-        tools:layout="@layout/new_grocery_fragment" />
+        tools:layout="@layout/fragment_new_grocery" />
 </navigation>
