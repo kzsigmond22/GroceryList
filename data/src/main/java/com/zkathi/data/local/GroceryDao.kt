@@ -6,7 +6,7 @@ import com.zkathi.data.local.entity.GroceryEntity
 @Dao
 interface GroceryDao {
 
-    @Query("SELECT * FROM groceryentity")
+    @Query("SELECT * FROM groceryentity ORDER BY quantity DESC")
     suspend fun getAll(): List<GroceryEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

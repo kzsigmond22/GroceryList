@@ -26,7 +26,10 @@ class GroceryListViewModel @Inject constructor(private val groceryRepository: Gr
         }
     }
 
-    // TODO: make this a queue?
-    fun updateGrocery(grocery: Grocery) =
-        viewModelScope.launch { groceryRepository.updateGrocery(grocery) }
+    fun updateGrocery(grocery: Grocery) {
+        viewModelScope.launch {
+            groceryRepository.updateGrocery(grocery)
+            refreshList()
+        }
+    }
 }

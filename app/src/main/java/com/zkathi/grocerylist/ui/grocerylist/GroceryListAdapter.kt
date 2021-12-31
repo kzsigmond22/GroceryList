@@ -2,11 +2,14 @@ package com.zkathi.grocerylist.ui.grocerylist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.databinding.ItemGroceryBinding
+import java.util.*
 
-class GroceryListAdapter(private val groceryUpdateHandler: GroceryUpdateHandler) : RecyclerView.Adapter<GroceryViewHolder>() {
+class GroceryListAdapter(private val groceryUpdateHandler: GroceryUpdateHandler) :
+    ListAdapter<Grocery, GroceryViewHolder>(UserDiffCallBack()) {
 
     private var groceryList = emptyList<Grocery>()
 
@@ -25,5 +28,18 @@ class GroceryListAdapter(private val groceryUpdateHandler: GroceryUpdateHandler)
     fun updateList(newGroceries: List<Grocery>) {
         groceryList = newGroceries
         notifyDataSetChanged()
+    }
+
+    fun swapItems(firstPosition: Int, secondPosition: Int) {
+        Collections.swap(groceryList, firstPosition, secondPosition)
+        notifyItemMoved(firstPosition, secondPosition)
+    }
+
+    private class UserDiffCallBack : DiffUtil.ItemCallback<Grocery>() {
+        override fun areItemsTheSame(oldItem: Grocery, newItem: Grocery): Boolean =
+            oldItem.uid == newItem.uid
+
+        override fun areContentsTheSame(oldItem: Grocery, newItem: Grocery): Boolean =
+            oldItem.uid == newItem.uid
     }
 }
