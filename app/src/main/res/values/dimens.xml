@@ -7,4 +7,6 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="new_grocery_img_height">240dp</dimen>
     <dimen name="icon_quantity_padding">16dp</dimen>
+    <dimen name="vertical_line_width">16dp</dimen>
+    <dimen name="vertical_line_height">128dp</dimen>
 </resources>

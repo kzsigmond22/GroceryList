@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.R
@@ -30,6 +31,7 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
         viewModel = ViewModelProvider(this)[GroceryListViewModel::class.java]
         val adapter = GroceryListAdapter(this)
         val list = view.findViewById<RecyclerView>(R.id.grocery_list_main_list)
+        list.addItemDecoration(DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL))
         list.adapter = adapter
         viewModel.groceries.observe(viewLifecycleOwner) { groceries ->
             adapter.updateList(groceries)
