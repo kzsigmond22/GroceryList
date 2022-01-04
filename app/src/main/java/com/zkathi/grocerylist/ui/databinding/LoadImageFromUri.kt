@@ -13,11 +13,13 @@ fun loadImageFromUri(imageView: ImageView, uriString: String?) {
             val uri = Uri.parse(it)
             Glide.with(imageView.context)
                 .load(uri)
+                .placeholder(R.drawable.ic_baseline_image_24)
                 .error(R.drawable.ic_baseline_image_24)
                 .into(imageView)
         } else {
             Glide.with(imageView.context)
                 .load(R.drawable.ic_baseline_image_24)
+                .placeholder(R.drawable.ic_baseline_image_24)
                 .into(imageView)
         }
     }

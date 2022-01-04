@@ -34,7 +34,7 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
         list.addItemDecoration(DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL))
         list.adapter = adapter
         viewModel.groceries.observe(viewLifecycleOwner) { groceries ->
-            adapter.updateList(groceries)
+            adapter.submitList(groceries)
         }
     }
 
