@@ -10,108 +10,114 @@
             type="com.zkathi.grocerylist.ui.newgrocery.NewGroceryViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/margin_normal"
-        tools:context=".ui.newgrocery.NewGroceryFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/new_grocery_image"
-            loadFromUri="@{viewmodel.grocery.image_name}"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/new_grocery_img_height"
-            android:contentDescription="@string/grocery_image"
-            app:layout_constraintBottom_toTopOf="@+id/barrier"
-            app:layout_constraintEnd_toStartOf="@+id/new_grocery_image_guid_line"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_image_24" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_normal"
+            tools:context=".ui.newgrocery.NewGroceryFragment">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/new_grocery_image_guid_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            <ImageView
+                android:id="@+id/new_grocery_image"
+                loadFromUri="@{viewmodel.grocery.image_name}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/new_grocery_img_height"
+                android:contentDescription="@string/grocery_image"
+                app:layout_constraintBottom_toTopOf="@+id/barrier"
+                app:layout_constraintEnd_toStartOf="@+id/new_grocery_image_guid_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_image_24" />
 
-        <ImageView
-            android:id="@+id/new_grocery_plus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="@string/increase"
-            android:foreground="?selectableItemBackground"
-            android:onClick="@{_ -> viewmodel.increaseGroceryQuantity()}"
-            android:scaleType="center"
-            app:layout_constraintBottom_toTopOf="@id/new_grocery_quantity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/new_grocery_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/new_grocery_image_guid_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/new_grocery_quantity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{Integer.toString(viewmodel.grocery.quantity), default=0}"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_large"
-            app:layout_constraintBottom_toBottomOf="@+id/new_grocery_image"
-            app:layout_constraintEnd_toEndOf="@id/new_grocery_plus"
-            app:layout_constraintStart_toStartOf="@id/new_grocery_plus"
-            app:layout_constraintTop_toTopOf="@+id/new_grocery_image" />
+            <ImageView
+                android:id="@+id/new_grocery_plus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/increase"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{_ -> viewmodel.increaseGroceryQuantity()}"
+                android:scaleType="center"
+                app:layout_constraintBottom_toTopOf="@id/new_grocery_quantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/new_grocery_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_24" />
 
-        <ImageView
-            android:id="@+id/new_grocery_minus"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="@string/decrease"
-            android:foreground="?selectableItemBackground"
-            android:onClick="@{_ -> viewmodel.decreaseGroceryQuantity()}"
-            android:scaleType="center"
-            app:layout_constraintBottom_toBottomOf="@+id/new_grocery_image"
-            app:layout_constraintEnd_toEndOf="@id/new_grocery_plus"
-            app:layout_constraintStart_toStartOf="@id/new_grocery_plus"
-            app:layout_constraintTop_toBottomOf="@id/new_grocery_quantity"
-            app:srcCompat="@drawable/ic_baseline_remove_24" />
+            <TextView
+                android:id="@+id/new_grocery_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewmodel.grocery.quantity), default=0}"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="@+id/new_grocery_image"
+                app:layout_constraintEnd_toEndOf="@id/new_grocery_plus"
+                app:layout_constraintStart_toStartOf="@id/new_grocery_plus"
+                app:layout_constraintTop_toTopOf="@+id/new_grocery_image" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="new_grocery_image, new_grocery_minus" />
+            <ImageView
+                android:id="@+id/new_grocery_minus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/decrease"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{_ -> viewmodel.decreaseGroceryQuantity()}"
+                android:scaleType="center"
+                app:layout_constraintBottom_toBottomOf="@+id/new_grocery_image"
+                app:layout_constraintEnd_toEndOf="@id/new_grocery_plus"
+                app:layout_constraintStart_toStartOf="@id/new_grocery_plus"
+                app:layout_constraintTop_toBottomOf="@id/new_grocery_quantity"
+                app:srcCompat="@drawable/ic_baseline_remove_24" />
 
-        <EditText
-            android:id="@+id/new_grocery_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:text="@={viewmodel.grocery.name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/barrier" />
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="new_grocery_image, new_grocery_minus" />
 
-        <EditText
-            android:id="@+id/new_grocery_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/description"
-            android:text="@={viewmodel.grocery.description}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/new_grocery_name" />
+            <EditText
+                android:id="@+id/new_grocery_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:text="@={viewmodel.grocery.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
 
-        <Button
-            android:id="@+id/new_grocery_add_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:id="@+id/new_grocery_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/description"
+                android:text="@={viewmodel.grocery.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_grocery_name" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/new_grocery_add_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_grocery_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
