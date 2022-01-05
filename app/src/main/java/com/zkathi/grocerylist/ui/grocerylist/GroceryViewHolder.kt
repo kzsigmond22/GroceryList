@@ -6,7 +6,8 @@ import com.zkathi.grocerylist.databinding.ItemGroceryBinding
 
 class GroceryViewHolder(
     private val binding: ItemGroceryBinding,
-    private val groceryUpdateHandler: GroceryUpdateHandler
+    private val groceryUpdateHandler: GroceryUpdateHandler,
+    private val groceryItemNavigator: GroceryItemNavigator
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -28,6 +29,10 @@ class GroceryViewHolder(
             grocery.quantity--
             updateGrocery()
         }
+    }
+
+    fun navigate() {
+        groceryItemNavigator.navigateToDetail(grocery)
     }
 
     private fun updateGrocery() {

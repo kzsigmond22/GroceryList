@@ -8,12 +8,15 @@ import com.zkathi.data.domain.model.Grocery
 import com.zkathi.grocerylist.databinding.ItemGroceryBinding
 import java.util.*
 
-class GroceryListAdapter(private val groceryUpdateHandler: GroceryUpdateHandler) :
+class GroceryListAdapter(
+    private val groceryUpdateHandler: GroceryUpdateHandler,
+    private val groceryItemNavigator: GroceryItemNavigator
+) :
     ListAdapter<Grocery, GroceryViewHolder>(UserDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
         val binding = ItemGroceryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GroceryViewHolder(binding, groceryUpdateHandler)
+        return GroceryViewHolder(binding, groceryUpdateHandler, groceryItemNavigator)
     }
 
     override fun onBindViewHolder(holder: GroceryViewHolder, position: Int) {

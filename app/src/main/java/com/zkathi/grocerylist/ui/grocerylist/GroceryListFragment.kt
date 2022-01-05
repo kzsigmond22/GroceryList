@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.zkathi.data.domain.model.Grocery
@@ -15,7 +16,7 @@ import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
+class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler, GroceryItemNavigator {
 
     private lateinit var viewModel: GroceryListViewModel
 
@@ -29,7 +30,7 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GroceryListViewModel::class.java]
-        val adapter = GroceryListAdapter(this)
+        val adapter = GroceryListAdapter(this, this)
         val list = view.findViewById<RecyclerView>(R.id.grocery_list_main_list)
         list.addItemDecoration(DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL))
         list.adapter = adapter
@@ -50,6 +51,11 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler {
 
     override fun updateGrocery(grocery: Grocery) {
         viewModel.updateGrocery(grocery)
+    }
+
+    override fun navigateToDetail(grocery: Grocery) {
+        Navigation.findNavController(requireView())
+            .navigate(R.id.action_groceryListFragment_to_groceryDetailFragment);
     }
 
 }
