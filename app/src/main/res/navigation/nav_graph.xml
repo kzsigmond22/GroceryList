@@ -13,10 +13,17 @@
         <action
             android:id="@+id/action_groceryListFragment_to_newGroceryFragment"
             app:destination="@id/newGroceryFragment" />
+        <action
+            android:id="@+id/action_groceryListFragment_to_groceryDetailFragment"
+            app:destination="@id/groceryDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/newGroceryFragment"
         android:name="com.zkathi.grocerylist.ui.newgrocery.NewGroceryFragment"
         android:label="new_grocery_fragment"
         tools:layout="@layout/fragment_new_grocery" />
+    <fragment
+        android:id="@+id/groceryDetailFragment"
+        android:name="com.zkathi.grocerylist.ui.grocerydetail.GroceryDetailFragment"
+        android:label="GroceryDetailFragment" />
 </navigation>
