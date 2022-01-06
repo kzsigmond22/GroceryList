@@ -1,10 +1,10 @@
 package com.zkathi.grocerylist.ui.grocerydetail
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentGroceryDetailBinding
 import com.zkathi.grocerylist.ui.GroceryFragment
@@ -13,6 +13,8 @@ class GroceryDetailFragment : GroceryFragment() {
 
     private lateinit var viewModel: GroceryDetailViewModel
     private lateinit var binding: FragmentGroceryDetailBinding
+
+    private val args: GroceryDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,7 @@ class GroceryDetailFragment : GroceryFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GroceryDetailViewModel::class.java]
+        viewModel.grocery.value = args.grocery
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
     }
