@@ -7,4 +7,6 @@
     <string name="decrease">Decrease</string>
     <string name="increase">Increase</string>
     <string name="new_grocery_fill_out_all">Name is required!</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewGroceryViewModel @Inject constructor(private val groceryRepository: GroceryRepository) :
+open class NewGroceryViewModel @Inject constructor(private val groceryRepository: GroceryRepository) :
     ViewModel() {
 
     private val MINIMUM_QUANTITY = 0

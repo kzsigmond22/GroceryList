@@ -75,7 +75,7 @@ class NewGroceryFragment : GroceryFragment() {
         }
     }
 
-    fun onSave() {
+    private fun onSave() {
         if (binding.newGroceryName.text.toString().isEmpty()) {
             showErrorToast(R.string.new_grocery_fill_out_all)
             return

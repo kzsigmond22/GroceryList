@@ -8,7 +8,9 @@ import androidx.navigation.fragment.navArgs
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentGroceryDetailBinding
 import com.zkathi.grocerylist.ui.GroceryFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GroceryDetailFragment : GroceryFragment() {
 
     private lateinit var viewModel: GroceryDetailViewModel
@@ -29,7 +31,7 @@ class GroceryDetailFragment : GroceryFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GroceryDetailViewModel::class.java]
-        viewModel.grocery.value = args.grocery
+        viewModel.grocery.postValue(args.grocery)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
     }
