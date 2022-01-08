@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
             tools:context=".ui.newgrocery.NewGroceryFragment">
 
             <ImageView
@@ -125,6 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_small"
+                android:backgroundTint="@color/color_danger"
                 android:text="@string/delete"
                 app:layout_constraintBottom_toBottomOf="@+id/grocery_detail_update_button"
                 app:layout_constraintEnd_toEndOf="parent"

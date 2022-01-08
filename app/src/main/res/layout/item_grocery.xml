@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_normal"
             android:text="@{grocery.name, default=Name}"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/item_grocery_image"
             app:layout_constraintTop_toTopOf="parent" />

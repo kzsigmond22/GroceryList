@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size_large">32sp</dimen>
+    <dimen name="text_size_big">24sp</dimen>
     <dimen name="text_size_normal">16sp</dimen>
 
     <dimen name="margin_normal">16dp</dimen>
@@ -8,5 +9,5 @@
     <dimen name="new_grocery_img_height">240dp</dimen>
     <dimen name="icon_quantity_padding">16dp</dimen>
     <dimen name="vertical_line_width">16dp</dimen>
-    <dimen name="vertical_line_height">128dp</dimen>
+    <dimen name="vertical_line_height">105dp</dimen>
 </resources>
