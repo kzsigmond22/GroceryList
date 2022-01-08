@@ -55,7 +55,7 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler, GroceryItem
 
     override fun navigateToDetail(grocery: Grocery) {
         val action =
-            GroceryListFragmentDirections.actionGroceryListFragmentToGroceryDetailFragment(grocery)
+            GroceryListFragmentDirections.actionGroceryListFragmentToGroceryDetailFragment(grocery.copy())
         Navigation.findNavController(requireView()).navigate(action)
     }
 
