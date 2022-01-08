@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
@@ -65,7 +66,25 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
     }
 
     private fun delete() {
-        viewModel.deleteGrocery()
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setPositiveButton(
+                    R.string.delete
+                ) { dialog, _ ->
+                    viewModel.deleteGrocery()
+                    dialog.dismiss()
+                }
+                setNegativeButton(
+                    R.string.cancel
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+            builder.setMessage(R.string.delete_warning)
+            builder.create()
+        }
+        alertDialog?.show()
     }
 
     private fun popFragmentAndSetResult() {

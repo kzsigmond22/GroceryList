@@ -9,4 +9,6 @@
     <string name="new_grocery_fill_out_all">Name is required!</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="delete_warning">Are you sure you want to delete this?</string>
+    <string name="cancel">Cancel</string>
 </resources>
