@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentGroceryDetailBinding
-import com.zkathi.grocerylist.ui.GroceryFragment
+import com.zkathi.grocerylist.ui.GroceryImageHandlerFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceryDetailFragment : GroceryFragment() {
+class GroceryDetailFragment : GroceryImageHandlerFragment() {
 
     private lateinit var viewModel: GroceryDetailViewModel
     private lateinit var binding: FragmentGroceryDetailBinding
@@ -34,6 +34,13 @@ class GroceryDetailFragment : GroceryFragment() {
         viewModel.grocery.postValue(args.grocery)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+        binding.groceryDetailImage.setOnClickListener {
+            takePicture()
+        }
+    }
+
+    override fun handleSuccessImage(imageUri: String) {
+        viewModel.setGroceryImage(imageUri)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

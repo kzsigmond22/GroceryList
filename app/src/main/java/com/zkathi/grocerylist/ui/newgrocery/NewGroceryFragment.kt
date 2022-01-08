@@ -1,38 +1,25 @@
 package com.zkathi.grocerylist.ui.newgrocery
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import com.zkathi.grocerylist.BuildConfig
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentNewGroceryBindingImpl
-import com.zkathi.grocerylist.ui.GroceryFragment
+import com.zkathi.grocerylist.ui.GroceryImageHandlerFragment
 import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 import java.util.*
 
 
 @AndroidEntryPoint
-class NewGroceryFragment : GroceryFragment() {
+class NewGroceryFragment : GroceryImageHandlerFragment() {
 
     private lateinit var viewModel: NewGroceryViewModel
     private lateinit var binding: FragmentNewGroceryBindingImpl
-
-    private lateinit var uri: Uri
-    private val takePicture =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
-            if (success) {
-                viewModel.setGroceryImage(uri.toString())
-            }
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,17 +37,13 @@ class NewGroceryFragment : GroceryFragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         binding.newGroceryImage.setOnClickListener {
-            val randomFileName = UUID.randomUUID().toString()
-            val file = File.createTempFile(randomFileName, ".jpg", requireActivity().filesDir)
-            uri = FileProvider.getUriForFile(
-                requireActivity().applicationContext,
-                BuildConfig.APPLICATION_ID + ".provider",
-                file
-            )
-
-            takePicture.launch(uri)
+            takePicture()
         }
         binding.newGroceryAddButton.setOnClickListener { onSave() }
+    }
+
+    override fun handleSuccessImage(imageUri: String) {
+        viewModel.setGroceryImage(imageUri)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
