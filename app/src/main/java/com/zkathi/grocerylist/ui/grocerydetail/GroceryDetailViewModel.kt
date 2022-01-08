@@ -1,5 +1,6 @@
 package com.zkathi.grocerylist.ui.grocerydetail
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.zkathi.data.domain.GroceryRepository
 import com.zkathi.grocerylist.ui.newgrocery.NewGroceryViewModel
@@ -11,10 +12,13 @@ import javax.inject.Inject
 class GroceryDetailViewModel @Inject constructor(private val groceryRepository: GroceryRepository) :
     NewGroceryViewModel(groceryRepository) {
 
+    val finalOperationCompleted = MutableLiveData<Boolean>()
+
     fun deleteGrocery() {
         grocery.value?.let {
             viewModelScope.launch {
                 groceryRepository.deleteGrocery(it)
+                finalOperationCompleted.postValue(true)
             }
         }
     }
@@ -23,6 +27,7 @@ class GroceryDetailViewModel @Inject constructor(private val groceryRepository: 
         grocery.value?.let {
             viewModelScope.launch {
                 groceryRepository.updateGrocery(it)
+                finalOperationCompleted.postValue(true)
             }
         }
     }

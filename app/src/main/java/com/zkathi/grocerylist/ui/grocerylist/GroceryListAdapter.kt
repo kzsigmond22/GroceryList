@@ -29,6 +29,7 @@ class GroceryListAdapter(
             oldItem.uid == newItem.uid
 
         override fun areContentsTheSame(oldItem: Grocery, newItem: Grocery): Boolean =
-            oldItem.uid == newItem.uid
+            oldItem.name == newItem.name && oldItem.quantity == newItem.quantity
+                    && oldItem.image_name == newItem.image_name
     }
 }
