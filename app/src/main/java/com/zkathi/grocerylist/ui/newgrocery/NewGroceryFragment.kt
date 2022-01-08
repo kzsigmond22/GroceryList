@@ -1,25 +1,26 @@
 package com.zkathi.grocerylist.ui.newgrocery
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.zkathi.grocerylist.R
-import com.zkathi.grocerylist.databinding.FragmentNewGroceryBindingImpl
+import com.zkathi.grocerylist.databinding.FragmentNewGroceryBinding
 import com.zkathi.grocerylist.ui.GroceryImageHandlerFragment
 import com.zkathi.grocerylist.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 
 @AndroidEntryPoint
 class NewGroceryFragment : GroceryImageHandlerFragment() {
 
     private lateinit var viewModel: NewGroceryViewModel
-    private lateinit var binding: FragmentNewGroceryBindingImpl
+    private lateinit var binding: FragmentNewGroceryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
