@@ -14,4 +14,6 @@ class GroceryRepositoryImpl @Inject constructor(
 
     override suspend fun updateGrocery(grocery: Grocery) = localDataSource.updateGrocery(grocery)
 
+    override suspend fun deleteGrocery(grocery: Grocery) = localDataSource.deleteGrocery(grocery)
+
 }

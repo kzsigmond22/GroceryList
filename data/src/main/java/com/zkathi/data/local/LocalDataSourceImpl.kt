@@ -19,4 +19,7 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun updateGrocery(grocery: Grocery) =
         groceryDao.update(groceryMapper.from(grocery))
+
+    override suspend fun deleteGrocery(grocery: Grocery) =
+        groceryDao.delete(groceryMapper.from(grocery))
 }

@@ -6,4 +6,5 @@ interface LocalDataSource {
     suspend fun getAllGroceries(): List<Grocery>
     suspend fun saveGrocery(grocery: Grocery)
     suspend fun updateGrocery(grocery: Grocery)
+    suspend fun deleteGrocery(grocery: Grocery)
 }
