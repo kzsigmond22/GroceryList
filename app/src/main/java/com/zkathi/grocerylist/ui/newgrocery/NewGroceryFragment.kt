@@ -46,18 +46,6 @@ class NewGroceryFragment : GroceryImageHandlerFragment() {
         viewModel.setGroceryImage(imageUri)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        val item: MenuItem? = menu.findItem(R.id.action_add_grocery)
-        if (item != null) {
-            item.isVisible = false
-        }
-    }
-
     private fun onSave() {
         if (binding.newGroceryName.text.toString().isEmpty()) {
             showErrorToast(R.string.new_grocery_fill_out_all)

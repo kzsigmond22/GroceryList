@@ -1,9 +1,13 @@
 package com.zkathi.grocerylist.ui
 
 import android.net.Uri
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.zkathi.grocerylist.BuildConfig
+import com.zkathi.grocerylist.R
 import java.io.File
 import java.util.*
 
@@ -29,5 +33,17 @@ abstract class GroceryImageHandlerFragment : GroceryFragment() {
         )
 
         takePicture.launch(uri)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val item: MenuItem? = menu.findItem(R.id.action_add_grocery)
+        if (item != null) {
+            item.isVisible = false
+        }
     }
 }

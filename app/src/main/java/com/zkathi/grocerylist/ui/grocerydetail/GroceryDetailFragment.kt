@@ -1,7 +1,9 @@
 package com.zkathi.grocerylist.ui.grocerydetail
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -41,18 +43,6 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
 
     override fun handleSuccessImage(imageUri: String) {
         viewModel.setGroceryImage(imageUri)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        val item: MenuItem? = menu.findItem(R.id.action_add_grocery)
-        if (item != null) {
-            item.isVisible = false
-        }
     }
 
 }
