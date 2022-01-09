@@ -35,7 +35,14 @@ class GroceryListFragment : GroceryFragment(), GroceryUpdateHandler, GroceryItem
         list.addItemDecoration(DividerItemDecoration(list.context, DividerItemDecoration.VERTICAL))
         list.adapter = adapter
         viewModel.groceries.observe(viewLifecycleOwner) { groceries ->
-            adapter.submitList(groceries)
+            if (groceries.isEmpty()) {
+                view.findViewById<View>(R.id.grocery_list_empty).visibility = View.VISIBLE
+                list.visibility = View.GONE
+            } else {
+                view.findViewById<View>(R.id.grocery_list_empty).visibility = View.GONE
+                list.visibility = View.VISIBLE
+                adapter.submitList(groceries)
+            }
         }
     }
 
