@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentGroceryDetailBinding
@@ -24,6 +26,7 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
     private lateinit var binding: FragmentGroceryDetailBinding
 
     private val args: GroceryDetailFragmentArgs by navArgs()
+    private lateinit var groceryOriginalUrl: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +42,7 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GroceryDetailViewModel::class.java]
         viewModel.grocery.postValue(args.grocery)
+        groceryOriginalUrl = args.grocery.image_name
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         binding.groceryDetailImage.setOnClickListener {
@@ -51,6 +55,14 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
                 popFragmentAndSetResult()
             }
         }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.grocery.value?.let { grocery ->
+                if (grocery.image_name != groceryOriginalUrl) {
+                    deletePicture(grocery.image_name)
+                }
+            }
+            findNavController().popBackStack()
+        }
     }
 
     override fun handleSuccessImage(imageUri: String) {
@@ -62,6 +74,11 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
             showErrorToast(R.string.new_grocery_fill_out_all)
             return
         }
+        viewModel.grocery.value?.let { grocery ->
+            if (grocery.image_name != groceryOriginalUrl) {
+                deletePicture(groceryOriginalUrl)
+            }
+        }
         viewModel.updateGrocery()
     }
 
@@ -72,6 +89,9 @@ class GroceryDetailFragment : GroceryImageHandlerFragment() {
                 setPositiveButton(
                     R.string.delete
                 ) { dialog, _ ->
+                    viewModel.grocery.value?.let { grocery ->
+                        deletePicture(grocery.image_name)
+                    }
                     viewModel.deleteGrocery()
                     dialog.dismiss()
                 }

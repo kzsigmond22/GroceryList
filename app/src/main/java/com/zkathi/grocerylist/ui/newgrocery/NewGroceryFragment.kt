@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.zkathi.grocerylist.R
 import com.zkathi.grocerylist.databinding.FragmentNewGroceryBinding
 import com.zkathi.grocerylist.ui.GroceryImageHandlerFragment
@@ -41,6 +43,12 @@ class NewGroceryFragment : GroceryImageHandlerFragment() {
             takePicture()
         }
         binding.newGroceryAddButton.setOnClickListener { onSave() }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.grocery.value?.let { grocery ->
+                deletePicture(grocery.image_name)
+            }
+            findNavController().popBackStack()
+        }
     }
 
     override fun handleSuccessImage(imageUri: String) {

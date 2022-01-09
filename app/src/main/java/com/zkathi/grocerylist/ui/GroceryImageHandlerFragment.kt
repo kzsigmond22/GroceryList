@@ -11,14 +11,19 @@ import com.zkathi.grocerylist.R
 import java.io.File
 import java.util.*
 
+
 abstract class GroceryImageHandlerFragment : GroceryFragment() {
 
     abstract fun handleSuccessImage(imageUri: String)
 
-    private lateinit var uri: Uri
+    private var uri: Uri? = null
+    private var previousUri: Uri? = null
     private val takePicture =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
             if (success) {
+                previousUri?.let {
+                    deletePicture(it.toString())
+                }
                 handleSuccessImage(uri.toString())
             }
         }
@@ -26,6 +31,7 @@ abstract class GroceryImageHandlerFragment : GroceryFragment() {
     protected fun takePicture() {
         val randomFileName = UUID.randomUUID().toString()
         val file = File.createTempFile(randomFileName, ".jpg", requireActivity().filesDir)
+        previousUri = uri
         uri = FileProvider.getUriForFile(
             requireActivity().applicationContext,
             BuildConfig.APPLICATION_ID + ".provider",
@@ -33,6 +39,14 @@ abstract class GroceryImageHandlerFragment : GroceryFragment() {
         )
 
         takePicture.launch(uri)
+    }
+
+    protected fun deletePicture(uriString: String) {
+        if (uriString.isNotEmpty()) {
+            val uri = Uri.parse(uriString)
+            val contentResolver = requireActivity().contentResolver
+            contentResolver.delete(uri, null, null)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
