@@ -17,10 +17,7 @@ fun loadImageFromUri(imageView: ImageView, uriString: String?) {
                 .error(R.drawable.ic_baseline_image_24)
                 .into(imageView)
         } else {
-            Glide.with(imageView.context)
-                .load(R.drawable.ic_baseline_image_24)
-                .placeholder(R.drawable.ic_baseline_image_24)
-                .into(imageView)
+            imageView.setImageResource(R.drawable.ic_baseline_image_24)
         }
     }
 }
